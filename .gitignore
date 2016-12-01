@@ -1,0 +1,6 @@
+*.zip
+.metadata/.mylyn/tasks.xml.zip
+.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
+.metadata/version.ini
+*.resources
+.metadata/.plugins/org.eclipse.core.resources/.projects/Checker/.markers

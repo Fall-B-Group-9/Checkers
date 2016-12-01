@@ -581,7 +581,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
 
         if (loser == redNormal && won==0){
-            msg.setText("Blue Wins!");
+            msg.setText("Yellow Wins!");
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {

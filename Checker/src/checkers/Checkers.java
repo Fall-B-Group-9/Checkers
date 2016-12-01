@@ -206,20 +206,23 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     }
 
+    //Updated by Eli 12/1/16 to resolve B12
+    //Draw each row, draw all the squares
+    //The bottom right square should be white
     public void paintComponent(Graphics g)	{
 		super.paintComponent(g);
-        g.setColor(new Color(0,0,0));
-
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                g.fillRect(100*j,100*i,50,50);
-            }
+        for (int row=0; row<8; row++){
+        	for (int col = 0;  col<8; col++){
+        		int x = 50*col;
+        		int y= 50*row;
+        		if((row%2)==(col%2))
+        			g.setColor(new Color(255,255,255)); //white color
+    			else
+    				g.setColor(new Color(0,0,0)); //black color
+        		g.fillRect(x, y, 50, 50);
+        	}
         }
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                g.fillRect(50+100*j,50+100*i,50,50);
-            }
-        }
+     
         g.drawLine(0,400,400,400);
         g.drawLine(400, 0, 400, 400);
         drawCheckers();

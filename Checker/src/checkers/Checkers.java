@@ -587,7 +587,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            new GameWin("Blue",this.getLocationOnScreen());
+            new GameWin("Yellow",this.getLocationOnScreen()); //Eli updated this 12/1/16 to resolved B13
             won=1;
             undoCount=0;
             newGame();

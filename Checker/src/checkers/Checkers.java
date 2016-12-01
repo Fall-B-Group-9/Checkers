@@ -27,8 +27,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JRadioButton p2 = new JRadioButton("2-Player", false);
 
     ButtonGroup colors = new ButtonGroup();
-    JRadioButton c1 = new JRadioButton("Red", true); //Changed
-    JRadioButton c2 = new JRadioButton("Yellow", false); //Changed
+    JRadioButton c1 = new JRadioButton("Red", false); //Changed
+    JRadioButton c2 = new JRadioButton("Yellow", true); //Changed
 
     Help hp=new Help();
 
@@ -373,13 +373,18 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         update(g);
 
         if(selectedMode==1){
+        	System.out.println("It starts here");
             play();
         }
+        
+        
     }
 
+    
+    
     public void play()	{
 
-        undoCount++;
+         undoCount++;
 
         if(undoCount>3){
             if(selectedMode==1 && difficulty!=4)
@@ -505,9 +510,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			case CheckerMove.legalMove:
 				incomplete = false;
 				highlight = false;
-				play();
-                update(g);
-                drawCheckers();
+				//play();
+				// update(g);
+				// drawCheckers();
+				computerDelay();
                 break;
 			case CheckerMove.incompleteMove:
 				incomplete = true;
@@ -524,7 +530,26 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
         }
 	}
-
+    
+    public void computerDelay(){
+        
+        update(g);
+        drawCheckers();
+    	
+    	if(selectedMode==1)
+    	{
+	    	try {
+	            Thread.sleep(1000);
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }    	
+	    	
+	        play();
+	        update(g);
+	        drawCheckers();
+    	}
+    }
+    
     public void mouseReleased(MouseEvent e) {
     }
 

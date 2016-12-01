@@ -514,10 +514,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			case CheckerMove.legalMove:
 				incomplete = false;
 				highlight = false;
-				//play();
-				// update(g);
-				// drawCheckers();
-				computerDelay();
+				if(selectedMode==1)
+					computerDelay();
+				else if(selectedMode==2){
+					play();
+					update(g);
+					drawCheckers();
+				}
                 break;
 			case CheckerMove.incompleteMove:
 				incomplete = true;
@@ -536,22 +539,19 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 	}
     
     public void computerDelay(){
-        
+		update(g);
+        drawCheckers();
+		
+    	try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }    	
+    	
+        play();
         update(g);
         drawCheckers();
-    	
-    	if(selectedMode==1)
-    	{
-	    	try {
-	            Thread.sleep(1000);
-	        } catch (InterruptedException e) {
-	            e.printStackTrace();
-	        }    	
-	    	
-	        play();
-	        update(g);
-	        drawCheckers();
-    	}
+	
     }
     
     public void mouseReleased(MouseEvent e) {
@@ -581,13 +581,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
 
         if (loser == redNormal && won==0){
-            msg.setText("Blue Wins!");
+            msg.setText("Yellow Wins!");
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            new GameWin("Blue",this.getLocationOnScreen());
+            new GameWin("Yellow",this.getLocationOnScreen()); //Eli updated this 12/1/16 to resolved B13
             won=1;
             undoCount=0;
             newGame();

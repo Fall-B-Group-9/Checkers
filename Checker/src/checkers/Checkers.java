@@ -7,8 +7,8 @@ import java.awt.*;
 public class Checkers extends JPanel implements ActionListener, ItemListener, MouseMotionListener, MouseListener {
 
     Graphics g;
-
-    JTextArea msg=new JTextArea("Start a new game... Blue is to move first...");
+    
+    JTextArea msg=new JTextArea("Start a new game... Yellow is to move first...");  //Eli updated this 12/1/16 as a fix for B02
     ImageIcon redN=new ImageIcon(new ImageIcon(getClass().getResource("/images/red_normal.jpg")).getImage());//red_normal.jpg
     ImageIcon yellowN=new ImageIcon(new ImageIcon(getClass().getResource("/images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
     ImageIcon redK=new ImageIcon(new ImageIcon(getClass().getResource("/images/red_king.jpg")).getImage());//red_king.jpg
@@ -206,20 +206,24 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     }
 
+    
+    //Updated by Eli 12/1/16 to resolve B12
+    //Draw each row, draw all the squares
+    //The bottom right square should be white
     public void paintComponent(Graphics g)	{
 		super.paintComponent(g);
-        g.setColor(new Color(0,0,0));
-
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                g.fillRect(100*j,100*i,50,50);
-            }
+        for (int row=0; row<8; row++){
+        	for (int col = 0;  col<8; col++){
+        		int x = 50*col;
+        		int y= 50*row;
+        		if((row%2)==(col%2))
+        			g.setColor(new Color(255,255,255)); //white color
+    			else
+    				g.setColor(new Color(0,0,0)); //black color
+        		g.fillRect(x, y, 50, 50);
+        	}
         }
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                g.fillRect(50+100*j,50+100*i,50,50);
-            }
-        }
+     
         g.drawLine(0,400,400,400);
         g.drawLine(400, 0, 400, 400);
         drawCheckers();
@@ -573,7 +577,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             msg.setText("Red to move");
         }
         else{
-            msg.setText("Blue to move");
+            msg.setText("Yellow to move"); //Eli updated this 12/1/16 to resolved B04
         }
 
         if (loser == redNormal && won==0){

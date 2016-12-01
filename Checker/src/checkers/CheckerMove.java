@@ -363,6 +363,10 @@ public class CheckerMove {
                                 return true;
                         break;
                 case Checkers.redKing:
+                		if ( isEmpty(board,i+1,j+1) || isEmpty(board,i+1,j-1)
+                				|| isEmpty(board,i-1,j+1) || isEmpty(board,i-1,j-1) )
+                            	return true;
+                	break;
                 case Checkers.yellowKing:
                         if ( isEmpty(board,i+1,j+1) || isEmpty(board,i+1,j-1)
                                 || isEmpty(board,i-1,j+1) || isEmpty(board,i-1,j-1) )

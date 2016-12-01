@@ -18,7 +18,7 @@ public class CheckerFrame extends JFrame implements ActionListener{
            //no need to handle exception as it only affect the appearence
         }
         setupGUI();
-        new PlaySound("src/Checkers/sounds//Start.wav").start();
+        new PlaySound("src//sounds//Start.wav").start(); //Eli updated 12/1/16 to resolved B03
     }
 
     private void setupGUI() {
@@ -50,7 +50,7 @@ public class CheckerFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equalsIgnoreCase("Start Game")){
             ((JButton)e.getSource()).setText("New Game");
-            new PlaySound("src/Checkers/sounds/button.wav").start();
+            new PlaySound("src//sounds//button.wav").start();
             gmP=new Checkers();
             gmP.setBounds(0,0,508,401);
             this.setContentPane(gmP);

@@ -7,8 +7,8 @@ import java.awt.*;
 public class Checkers extends JPanel implements ActionListener, ItemListener, MouseMotionListener, MouseListener {
 
     Graphics g;
-
-    JTextArea msg=new JTextArea("Start a new game... Blue is to move first...");
+    
+    JTextArea msg=new JTextArea("Start a new game... Yellow is to move first...");  //Eli updated this 12/1/16 as a fix for B02
     ImageIcon redN=new ImageIcon(new ImageIcon(getClass().getResource("/images/red_normal.jpg")).getImage());//red_normal.jpg
     ImageIcon yellowN=new ImageIcon(new ImageIcon(getClass().getResource("/images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
     ImageIcon redK=new ImageIcon(new ImageIcon(getClass().getResource("/images/red_king.jpg")).getImage());//red_king.jpg
@@ -573,7 +573,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             msg.setText("Red to move");
         }
         else{
-            msg.setText("Blue to move");
+            msg.setText("Yellow to move"); //Eli updated this 12/1/16 to resolved B04
         }
 
         if (loser == redNormal && won==0){

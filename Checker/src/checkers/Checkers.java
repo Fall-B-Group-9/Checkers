@@ -142,18 +142,18 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         this.add(p1);
         this.add(p2);
 
-        col.setBounds(110,400,80,25);
-        //this.add(col);
+        col.setBounds(420,360,80,25);
+        this.add(col);
         c1.addActionListener(this);
         c2.addActionListener(this);
         c1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         c2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         colors.add(c1);
         colors.add(c2);
-        c1.setBounds(90,440,80,25);
-        c2.setBounds(90,420,80,25);
-        //this.add(c1);
-        //this.add(c2);
+        c1.setBounds(420,380,80,25);
+        c2.setBounds(420,408,80,25);
+        this.add(c1);
+        this.add(c2);
 
         level.setCursor(new Cursor(Cursor.HAND_CURSOR));
         level.addItemListener(this);

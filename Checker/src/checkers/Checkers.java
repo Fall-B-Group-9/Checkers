@@ -346,7 +346,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
         update(getGraphics());
         drawCheckers();
-        showStatus();
+        
     }
 
     public void drawCheckers(){                   //paint checkers on the board
@@ -386,8 +386,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     
     
-    public void play()	{
-
+    public void play()	{    
+    	
          undoCount++;
 
         if(undoCount>3){

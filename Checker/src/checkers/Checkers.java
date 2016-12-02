@@ -417,8 +417,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				loser = redNormal;
 			else
 			{
-                CheckerMove.moveComputer(board, result);
-
+				//Start Changes
+				computerHighlight(result[0],result[1]); 
+				computerDelay();			
+  	
+				
+		    	//End Changes
+                CheckerMove.moveComputer(board, result);                
                 if (loser == empty){
                     new PlaySound("src//sounds//comPlay.wav").start();
                     play();
@@ -510,6 +515,15 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			case CheckerMove.legalMove:
 				incomplete = false;
 				highlight = false;
+				
+				update(g);
+				drawCheckers();
+				
+				play();
+				
+				update(g);
+				drawCheckers();
+				
 				//play();
 				// update(g);
 				// drawCheckers();
@@ -533,21 +547,28 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     
     public void computerDelay(){
         
-        update(g);
-        drawCheckers();
+    	try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }  
+    }
+    
+    public void computerHighlight(int x, int y){
     	
-    	if(selectedMode==1)
-    	{
-	    	try {
-	            Thread.sleep(1000);
-	        } catch (InterruptedException e) {
-	            e.printStackTrace();
-	        }    	
-	    	
-	        play();
-	        update(g);
-	        drawCheckers();
-    	}
+    	int [] square = new int[2];
+    	//square = CheckerMove.getIndex(x, y);
+    	
+    	square[0] = x;
+    	square[1] = y;
+    	
+    	g=getGraphics();
+    	g.setColor(new Color(255,100,30));
+    	g.fillRect(50*square[0],50*square[1],50,50);
+    	drawCheckers();
+    	new PlaySound("src//sounds//clickChecker.wav").start();
+    	 
+    	
     }
     
     public void mouseReleased(MouseEvent e) {

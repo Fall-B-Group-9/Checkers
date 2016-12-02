@@ -28,7 +28,7 @@ public class CheckerMove {
     }
 
     /*
-    noMovesLeft return true if no more movements are left for the next player
+    noMovesLeft return true if no more movents are left for the next player
     else it returns false
     */
     public static boolean noMovesLeft(int[][] board,int toMove)
@@ -62,7 +62,7 @@ public class CheckerMove {
     /*
      ApplyMove checks if the move entered is legal, illegal or incomplete.
      If IsMoveLegal returns incompleteMove, this means a capture has just been made.
-     Call canCapture() to see if a further capture is possible. clears old position and
+     Call canCapture() to see     if a further capture is possible. clears old position and
      Move checker to a new position
     */
 
@@ -172,14 +172,14 @@ public class CheckerMove {
                 int cap_j = (srtJ + endJ) / 2;
                 int cap_piece = board[cap_i][cap_j];
 
-                if (turn == Checkers.redNormal)         //when you try to cut a piece it should be a piece of opposite side.
+                if (turn == Checkers.redNormal)         //when you try to cut a piece it should be a peice of opposite side.
                                                           //otherwise it is an illegal move.
                 {
 					if (!(cap_piece == Checkers.yellowNormal ||
 						cap_piece == Checkers.yellowKing))
                         return illegalMove;
 				}
-                else if (!(cap_piece == Checkers.redNormal ||       //same for yellow
+                else if (!(cap_piece == Checkers.redNormal ||       //same for yellowers
 					cap_piece == Checkers.redKing))
                     return illegalMove;
 
@@ -257,7 +257,7 @@ public class CheckerMove {
                                   &&
                                   (board[i+2][j+2] == Checkers.empty))
                                   return true;
-                        // other possible move direction
+                        // other posiible move direction
                         if (i-2>-1 && j+2<8)        
                                 if ( (board[i-1][j+1] == Checkers.yellowNormal ||
                                 board[i-1][j+1] == Checkers.yellowKing)
@@ -349,7 +349,7 @@ public class CheckerMove {
 
         // canWalk() returns true if the piece on (i,j) can make a
         // legal non-capturing move
-        // Important to see if the game is over
+        // Imporatant to see if the game is over
         static boolean canWalk(int[][] board, int i, int j)
         {
                 switch ( board[i][j] )
@@ -422,7 +422,7 @@ public class CheckerMove {
                             move=isMoveLegal(board,i,j,i+k,j+l,turn);
                             if (move == incompleteMove)
                             {
-                                int[] int_array = new int[4];   //stores old coordinates and new coordinates
+                                int[] int_array = new int[4];   //stores old coorinates and new coordinates
                                 int_array[0]=i; int_array[1]=j;
                                 int_array[2]=i+k; int_array[3]=j+l;
                                     int[][] temp_board = GameEngine.copyBoard(board);
@@ -463,7 +463,7 @@ public class CheckerMove {
 
     }
 
-//"apply move" in the MinMax.  simply moves the board give moves
+//"apply move" in the Minimax.  simply moves the board give moves
     static void moveComputer(int[][] board, int[] move)
     {
         int startx = move[0];

@@ -27,9 +27,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JRadioButton p2 = new JRadioButton("2-Player", false);
 
     ButtonGroup colors = new ButtonGroup();
-    JRadioButton c1 = new JRadioButton("Red", true); //Changed
-    JRadioButton c2 = new JRadioButton("Yellow", false); //Changed
-
+    JRadioButton c1 = new JRadioButton("Red", true); //Updated By Greg Schoberth To Resolve B01
+    JRadioButton c2 = new JRadioButton("Yellow", false); //Updated By Greg Schoberth To Resolve B01
     Help hp=new Help();
 
     JLabel mode=new JLabel("Mode");
@@ -256,12 +255,30 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             level.setVisible(false);
             c2.setSelected(true);
         }
-        if(e.getActionCommand().equalsIgnoreCase("red")){
-            new PlaySound("src//sounds//option.wav").start();
-        }
-        if(e.getActionCommand().equalsIgnoreCase("yellow")){
-            new PlaySound("src//sounds//option.wav").start();
-        }
+        
+        //Updated By Greg Schoberth To Resolve B01
+	    if(e.getActionCommand().equalsIgnoreCase("red")){
+	        new PlaySound("src//sounds//option.wav").start();
+	
+	        bk.setIcon(yellowK);
+	        bp.setIcon(yellowN);
+	        
+	        rk.setIcon(redK);
+	        rp.setIcon(redN);
+	    }
+	    
+	  //Updated By Greg Schoberth To Resolve B01
+	    if(e.getActionCommand().equalsIgnoreCase("yellow")){
+	        new PlaySound("src//sounds//option.wav").start();
+	
+	        rk.setIcon(yellowK);
+	        rp.setIcon(yellowN);
+	        
+	        bk.setIcon(redK);
+	        bp.setIcon(redN);
+	    
+	    }
+	    
         if(e.getActionCommand().equalsIgnoreCase("New Game")){
             new PlaySound("src//sounds//button.wav").start();
             newGame();

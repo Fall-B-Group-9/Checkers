@@ -27,8 +27,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JRadioButton p2 = new JRadioButton("2-Player", false);
 
     ButtonGroup colors = new ButtonGroup();
-    JRadioButton c1 = new JRadioButton("Red", false); //Changed
-    JRadioButton c2 = new JRadioButton("Yellow", true); //Changed
+    JRadioButton c1 = new JRadioButton("Red", true); //Updated By Greg Schoberth To Resolve B01
+    JRadioButton c2 = new JRadioButton("Yellow", false); //Updated By Greg Schoberth To Resolve B01
 
     Help hp=new Help();
 
@@ -87,6 +87,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         setupGUI();
     }
 
+  //Updated By Greg Schoberth To Resolve E02 
     private void setupGUI(){
         setLayout(null);
 
@@ -256,12 +257,30 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             level.setEnabled(false);
             level.setVisible(false);
             c2.setSelected(true);
+       
         }
+        
+        //Updated By Greg Schoberth To Resolve B01
         if(e.getActionCommand().equalsIgnoreCase("red")){
             new PlaySound("src//sounds//option.wav").start();
+
+            bk.setIcon(yellowK);
+            bp.setIcon(yellowN);
+            
+            rk.setIcon(redK);
+            rp.setIcon(redN);
         }
+        
+      //Updated By Greg Schoberth To Resolve B01
         if(e.getActionCommand().equalsIgnoreCase("yellow")){
             new PlaySound("src//sounds//option.wav").start();
+
+            rk.setIcon(yellowK);
+            rp.setIcon(yellowN);
+            
+            bk.setIcon(redK);
+            bp.setIcon(redN);
+        
         }
         if(e.getActionCommand().equalsIgnoreCase("New Game")){
             new PlaySound("src//sounds//button.wav").start();
@@ -385,7 +404,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     }
 
     
-    
+  //Updated By Greg Schoberth To Resolve E03 
     public void play()	{
 
         undoCount++;
@@ -546,7 +565,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
        }
 	}
    
-   
+   //Updated By Greg Schoberth To Resolve E01 
    //Causes the thread to sleep for a set period of time
    //This method is used to create a delay between player and computer moves
    //to create the sense of the computer choosing its move before executing it.

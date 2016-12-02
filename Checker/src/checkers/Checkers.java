@@ -355,15 +355,15 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow"))
 		{
             this.toMove = redNormal;
-            update(getGraphics());
-            drawCheckers();
+            update(getGraphics()); //Updated to resolve an issue with E03
+            drawCheckers(); //Updated to resolve an issue with E03
             play();
 		}
 		else if (selectedMode==1 && selectedColor.equalsIgnoreCase("red"))
 		{
            this.toMove = redNormal;
-           update(getGraphics());
-           drawCheckers();
+           update(getGraphics()); //Updated to resolve an issue with E03
+           drawCheckers(); //Updated to resolve an issue with E03
            play();
 		}
 

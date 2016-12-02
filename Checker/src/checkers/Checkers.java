@@ -558,6 +558,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 	}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    
    //Updated By Greg Schoberth To Resolve E01 
    //Causes the thread to sleep for a set period of time
@@ -594,6 +595,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 =======
 =======
 >>>>>>> parent of 1411700... Initial Enhancement 03 Commit
+=======
+>>>>>>> parent of 1411700... Initial Enhancement 03 Commit
     
     public void computerDelay(){
 		update(g);
@@ -611,6 +614,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 	
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 1411700... Initial Enhancement 03 Commit
+=======
 >>>>>>> parent of 1411700... Initial Enhancement 03 Commit
 =======
 >>>>>>> parent of 1411700... Initial Enhancement 03 Commit

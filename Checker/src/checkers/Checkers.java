@@ -82,6 +82,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     int won=0;
 
     Point winPoint;
+    
+    static Point popUp;
 
     Checkers(){
         setupGUI();
@@ -408,8 +410,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     }
 
     
-  //Updated By Greg Schoberth To Resolve E03 
+    //Updated By Greg Schoberth To Resolve E03 
+    // Updated by Kendra Neil to add functionality for E04
     public void play()	{
+    	popUp = this.getLocationOnScreen();
 
         undoCount++;
 

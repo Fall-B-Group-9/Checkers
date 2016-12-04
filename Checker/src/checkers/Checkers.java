@@ -126,7 +126,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         nwB.setBounds(405,70,95,25);//297
         this.add(nwB);
         unB.setBounds(405,100,95,25);
-        //this.add(unB);
+        this.add(unB);
         hlpB.setBounds(415,10,25,25);
         this.add(hlpB);
         snB.setBounds(460,10,25,25);

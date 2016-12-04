@@ -17,16 +17,19 @@ public class PlaySound extends Thread {
 
 	private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
 
-	enum Position {LEFT, RIGHT, NORMAL}
+	enum Position {
+		LEFT, RIGHT, NORMAL
+	}
 
 	public PlaySound(String wavfile) {
 		filename = wavfile;
 	}
 
 	public void run() {
-        if(Checkers.silent) return;
-        
-        File soundFile = new File(filename);
+		if (Checkers.silent)
+			return;
+
+		File soundFile = new File(filename);
 		if (!soundFile.exists()) {
 			System.err.println("Wave file not found: " + filename);
 			return;
@@ -59,8 +62,7 @@ public class PlaySound extends Thread {
 		}
 
 		if (auline.isControlSupported(FloatControl.Type.PAN)) {
-			FloatControl pan = (FloatControl) auline
-					.getControl(FloatControl.Type.PAN);
+			FloatControl pan = (FloatControl) auline.getControl(FloatControl.Type.PAN);
 		}
 
 		auline.start();
@@ -75,7 +77,7 @@ public class PlaySound extends Thread {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-        } finally {
+		} finally {
 			auline.drain();
 			auline.close();
 		}

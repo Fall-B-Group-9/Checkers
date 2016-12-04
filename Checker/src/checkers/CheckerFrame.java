@@ -12,10 +12,10 @@ public class CheckerFrame extends JFrame implements ActionListener{
     CheckerFrame(){
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(this); //changing the appearence of the frame
+            SwingUtilities.updateComponentTreeUI(this); //changing the appearance of the frame
         }
         catch (Exception e) {
-           //no need to handle exception as it only affect the appearence
+           //no need to handle exception as it only affect the appearance
         }
         setupGUI();
         new PlaySound("src//sounds//Start.wav").start(); //Eli updated 12/1/16 to resolved B03

@@ -262,22 +262,22 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		if (e.getActionCommand().equalsIgnoreCase("red")) {
 			new PlaySound("src//sounds//option.wav").start();
 
-			bk.setIcon(yellowK);
+			/*bk.setIcon(yellowK);
 			bp.setIcon(yellowN);
 
 			rk.setIcon(redK);
-			rp.setIcon(redN);
+			rp.setIcon(redN);*/
 		}
 
 		// Updated By Greg Schoberth To Resolve B01
 		if (e.getActionCommand().equalsIgnoreCase("yellow")) {
 			new PlaySound("src//sounds//option.wav").start();
 
-			rk.setIcon(yellowK);
+			/*rk.setIcon(yellowK);
 			rp.setIcon(yellowN);
 
 			bk.setIcon(redK);
-			bp.setIcon(redN);
+			bp.setIcon(redN);*/
 
 		}
 		if (e.getActionCommand().equalsIgnoreCase("New Game")) {
@@ -325,6 +325,27 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
 		loser = empty;
 
+		// Updated By Greg Schoberth To Resolve B01
+		if (selectedColor == "red" && selectedMode == 1){
+
+			bk.setIcon(yellowK);
+			bp.setIcon(yellowN);
+
+			rk.setIcon(redK);
+			rp.setIcon(redN);
+		}
+
+		// Updated By Greg Schoberth To Resolve B01
+		else if(selectedColor == "yellow" && selectedMode == 1){
+
+			rk.setIcon(yellowK);
+			rp.setIcon(yellowN);
+
+			bk.setIcon(redK);
+			bp.setIcon(redN);
+
+		}
+		
 		for (int i = 0; i < 8; i++) // applies values to the board
 		{
 			for (int j = 0; j < 8; j++)

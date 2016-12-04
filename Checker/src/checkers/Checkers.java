@@ -255,6 +255,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			level.setEnabled(false);
 			level.setVisible(false);
 			c2.setSelected(true);
+			unB.setVisible(false);
 
 		}
 
@@ -414,7 +415,6 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		update(g);
 
 		if (selectedMode == 1) {
-			System.out.println("It starts here");
 			play();
 		}
 

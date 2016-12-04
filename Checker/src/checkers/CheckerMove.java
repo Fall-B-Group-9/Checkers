@@ -112,6 +112,8 @@ public class CheckerMove {
      Returns incompleteMove if a capture has taken place.
      Note: it does not check if a 2nd capture is possible!
     */
+    
+    // Updated by Kendra to enable E05
     static int isMoveLegal(int[][] board,int srtI,int srtJ,int endI,int endJ,int turn)
         {
 			if (! (inRange(srtI,srtJ) && inRange(endI,endJ) ) )       //if try to move out of the board,

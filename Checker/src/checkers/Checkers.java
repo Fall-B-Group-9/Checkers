@@ -32,17 +32,22 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
 	Help hp = new Help();
 
+	// Edited by Kendra to add Player 1 and Player 2 options
 	JLabel mode = new JLabel("Mode");
 	JLabel col = new JLabel("Colour");
 	JLabel diff = new JLabel("Difficulty Level");
 	JLabel rp = new JLabel();
 	JLabel rpt = new JLabel("Your Piece");
-	JLabel bpt = new JLabel("Opponent's Piece");
-	JLabel bp = new JLabel();
+	JLabel ypt = new JLabel("Opponent's Piece");
+	JLabel yp = new JLabel();
 	JLabel rk = new JLabel();
 	JLabel rkt = new JLabel("Your King");
-	JLabel bkt = new JLabel("Opponent's King");
-	JLabel bk = new JLabel();
+	JLabel ykt = new JLabel("Opponent's King");
+	JLabel yk = new JLabel();
+	JLabel p1n = new JLabel("Player 1");
+	JLabel p1k = new JLabel("Player 1 King");
+	JLabel p2n = new JLabel("Player 2");
+	JLabel p2k = new JLabel("Player 2 King");
 
 	JComboBox level = new JComboBox();
 
@@ -180,29 +185,44 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		msg.setEnabled(false);
 		this.add(msg);
 
+		// Updated by Kendra to add Player 1 and Player 2 Options
+		// Changed Spacing and order of display
+		// Fixes B01
 		rp.setBounds(10, 440, 50, 50);
 		rp.setIcon(redN);
 		this.add(rp);
 		rpt.setBounds(60, 450, 60, 20);
 		this.add(rpt);
+		p1n.setBounds(60, 450, 60, 20);
+		this.add(p1n);
+		p1n.setVisible(false);
 
-		bp.setBounds(110, 440, 50, 50);
-		bp.setIcon(yellowN);
-		this.add(bp);
-		bpt.setBounds(160, 450, 90, 20);
-		this.add(bpt);
+		yp.setBounds(110, 440, 50, 50);
+		yp.setIcon(yellowN);
+		this.add(yp);
+		ypt.setBounds(160, 450, 90, 20);
+		this.add(ypt);
+		p2n.setBounds(160, 450, 90, 20);
+		this.add(p2n);
+		p2n.setVisible(false);
 
 		rk.setBounds(250, 440, 50, 50);
 		rk.setIcon(redK);
 		this.add(rk);
 		rkt.setBounds(305, 450, 60, 20);
 		this.add(rkt);
+		p1k.setBounds(260, 450, 100, 20);
+		this.add(p1k);
+		p1k.setVisible(false);
 
-		bk.setBounds(365, 440, 50, 50);
-		bk.setIcon(yellowK);
-		this.add(bk);
-		bkt.setBounds(420, 450, 100, 20);
-		this.add(bkt);
+		yk.setBounds(365, 440, 50, 50);
+		yk.setIcon(yellowK);
+		this.add(yk);
+		ykt.setBounds(420, 450, 100, 20);
+		this.add(ykt);
+		p2k.setBounds(410, 450, 100, 20);
+		this.add(p2k);
+		p2k.setVisible(false);
 
 	}
 
@@ -255,7 +275,25 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			level.setEnabled(false);
 			level.setVisible(false);
 			c2.setSelected(true);
+			
+			// Updated so undo is not an option for two player
 			unB.setVisible(false);
+			
+			// Updated by Kendra to add Player 1 and Player 2 Options
+			// Changed Spacing and order of display
+			// Fixes B01
+			rpt.setVisible(false);
+			ypt.setVisible(false);
+			rkt.setVisible(false);
+			ykt.setVisible(false);
+			rp.setBounds(110, 440, 50, 50);
+			yp.setBounds(10, 440, 50, 50);
+			rk.setBounds(350, 440, 50, 50);
+			yk.setBounds(210, 440, 50, 50);
+			p1n.setVisible(true);
+			p2n.setVisible(true);
+			p1k.setVisible(true);
+			p2k.setVisible(true);
 
 		}
 
@@ -329,8 +367,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		// Updated By Greg Schoberth To Resolve B01
 		if (selectedColor == "red" && selectedMode == 1){
 
-			bk.setIcon(yellowK);
-			bp.setIcon(yellowN);
+			yk.setIcon(yellowK);
+			yp.setIcon(yellowN);
 
 			rk.setIcon(redK);
 			rp.setIcon(redN);
@@ -342,10 +380,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			rk.setIcon(yellowK);
 			rp.setIcon(yellowN);
 
-			bk.setIcon(redK);
-			bp.setIcon(redN);
+			yk.setIcon(redK);
+			yp.setIcon(redN);
 
 		}
+
 		
 		for (int i = 0; i < 8; i++) // applies values to the board
 		{

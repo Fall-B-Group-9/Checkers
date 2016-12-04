@@ -84,7 +84,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     Point winPoint;
     
     static Point popUp;
-
+    
+    boolean inProgress = false;
+    
     Checkers(){
         setupGUI();
     }
@@ -263,53 +265,28 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
         
         //Updated By Greg Schoberth To Resolve B01
-
 	    if(e.getActionCommand().equalsIgnoreCase("red")){
 	        new PlaySound("src//sounds//option.wav").start();
-	
-	        bk.setIcon(yellowK);
-	        bp.setIcon(yellowN);
-	        
-	        rk.setIcon(redK);
-	        rp.setIcon(redN);
+		        /*bk.setIcon(yellowK);
+		        bp.setIcon(yellowN);
+		        
+		        rk.setIcon(redK);
+		        rp.setIcon(redN);      */  
 	    }
 	    
 	  //Updated By Greg Schoberth To Resolve B01
 	    if(e.getActionCommand().equalsIgnoreCase("yellow")){
-	        new PlaySound("src//sounds//option.wav").start();
-	
-	        rk.setIcon(yellowK);
-	        rp.setIcon(yellowN);
-	        
-	        bk.setIcon(redK);
-	        bp.setIcon(redN);
-	    
+	        new PlaySound("src//sounds//option.wav").start();/*
+		        rk.setIcon(yellowK);
+		        rp.setIcon(yellowN);
+		        
+		        bk.setIcon(redK);
+		        bp.setIcon(redN);	     */   
 	    }
 	    
-        if(e.getActionCommand().equalsIgnoreCase("red")){
-            new PlaySound("src//sounds//option.wav").start();
-
-            bk.setIcon(yellowK);
-            bp.setIcon(yellowN);
-            
-            rk.setIcon(redK);
-            rp.setIcon(redN);
-        }
-        
-      //Updated By Greg Schoberth To Resolve B01
-        if(e.getActionCommand().equalsIgnoreCase("yellow")){
-            new PlaySound("src//sounds//option.wav").start();
-
-            rk.setIcon(yellowK);
-            rp.setIcon(yellowN);
-            
-            bk.setIcon(redK);
-            bp.setIcon(redN);
-        
-        }
-
         if(e.getActionCommand().equalsIgnoreCase("New Game")){
             new PlaySound("src//sounds//button.wav").start();
+            inProgress = false;
             newGame();
         }
         if(e.getActionCommand().equalsIgnoreCase("Undo") && undoCount>3){
@@ -352,9 +329,28 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
         highlight = false;
 		incomplete = false;
-
         loser=empty;
 
+        
+        if(selectedColor.equalsIgnoreCase("red")){
+	        bk.setIcon(yellowK);
+	        bp.setIcon(yellowN);
+	        
+	        rk.setIcon(redK);
+	        rp.setIcon(redN);
+	        update(getGraphics());
+    }
+    
+	  //Updated By Greg Schoberth To Resolve B01
+	    if(selectedColor.equalsIgnoreCase("yellow")){
+		        rk.setIcon(yellowK);
+		        rp.setIcon(yellowN);
+		        
+		        bk.setIcon(redK);
+		        bp.setIcon(redN);
+		        update(getGraphics());
+	    }
+        
         for (int i=0; i<8; i++)                                  //applies values to the board
 		{
 			for (int j=0; j<8; j++)
@@ -392,7 +388,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
            drawCheckers(); //Updated to resolve an issue with E03
            play();
 		}
+        
 
+	    
+        
         update(getGraphics());
         drawCheckers();
         showStatus();

@@ -261,6 +261,46 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			c2.setVisible(true);
 			level.setEnabled(true);
 			level.setVisible(true);
+			rp.setBounds(10, 440, 50, 50);
+			yp.setIcon(redN);
+			this.add(rp);
+			rpt.setBounds(60, 450, 60, 20);
+			this.add(rpt);
+			p1n.setBounds(60, 450, 60, 20);
+			this.add(p1n);
+			p1n.setVisible(false);
+			rpt.setVisible(true);
+
+			// Updating so it shows correct input when switched back to 1 player mode
+			rp.setBounds(110, 440, 50, 50);
+			yp.setIcon(yellowN);
+			this.add(yp);
+			ypt.setBounds(160, 450, 90, 20);
+			this.add(ypt);
+			p2n.setBounds(160, 450, 90, 20);
+			this.add(p2n);
+			p2n.setVisible(false);
+			ypt.setVisible(true);
+
+			rk.setBounds(250, 440, 50, 50);
+			yk.setIcon(redK);
+			this.add(rk);
+			rkt.setBounds(305, 450, 60, 20);
+			this.add(rkt);
+			p1k.setBounds(260, 450, 100, 20);
+			this.add(p1k);
+			p1k.setVisible(false);
+			rkt.setVisible(true);
+
+			yk.setBounds(365, 440, 50, 50);
+			rk.setIcon(yellowK);
+			this.add(yk);
+			ykt.setBounds(420, 450, 100, 20);
+			this.add(ykt);
+			p2k.setBounds(410, 450, 100, 20);
+			this.add(p2k);
+			p2k.setVisible(false);
+			ykt.setVisible(true);
 		}
 		if (e.getActionCommand().equalsIgnoreCase("2-Player")) {
 			new PlaySound("src//sounds//option.wav").start();

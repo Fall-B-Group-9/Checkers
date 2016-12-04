@@ -27,8 +27,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JRadioButton p2 = new JRadioButton("2-Player", false);
 
     ButtonGroup colors = new ButtonGroup();
-    JRadioButton c1 = new JRadioButton("Red", false); //Changed
-    JRadioButton c2 = new JRadioButton("Yellow", true); //Changed
+    JRadioButton c1 = new JRadioButton("Red", true); //Updated By Greg Schoberth To Resolve B01
+    JRadioButton c2 = new JRadioButton("Yellow", false); //Updated By Greg Schoberth To Resolve B01
 
     Help hp=new Help();
 
@@ -82,11 +82,14 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     int won=0;
 
     Point winPoint;
+    
+    static Point popUp;
 
     Checkers(){
         setupGUI();
     }
 
+  //Updated By Greg Schoberth To Resolve E02 
     private void setupGUI(){
         setLayout(null);
 
@@ -123,7 +126,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         nwB.setBounds(405,70,95,25);//297
         this.add(nwB);
         unB.setBounds(405,100,95,25);
-        //this.add(unB);
+        this.add(unB);
         hlpB.setBounds(415,10,25,25);
         this.add(hlpB);
         snB.setBounds(460,10,25,25);
@@ -206,7 +209,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     }
 
-    
+
     //Updated by Eli 12/1/16 to resolve B12
     //Draw each row, draw all the squares
     //The bottom right square should be white
@@ -256,13 +259,55 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             level.setEnabled(false);
             level.setVisible(false);
             c2.setSelected(true);
+       
         }
+        
+        //Updated By Greg Schoberth To Resolve B01
+
+	    if(e.getActionCommand().equalsIgnoreCase("red")){
+	        new PlaySound("src//sounds//option.wav").start();
+	
+	        bk.setIcon(yellowK);
+	        bp.setIcon(yellowN);
+	        
+	        rk.setIcon(redK);
+	        rp.setIcon(redN);
+	    }
+	    
+	  //Updated By Greg Schoberth To Resolve B01
+	    if(e.getActionCommand().equalsIgnoreCase("yellow")){
+	        new PlaySound("src//sounds//option.wav").start();
+	
+	        rk.setIcon(yellowK);
+	        rp.setIcon(yellowN);
+	        
+	        bk.setIcon(redK);
+	        bp.setIcon(redN);
+	    
+	    }
+	    
         if(e.getActionCommand().equalsIgnoreCase("red")){
             new PlaySound("src//sounds//option.wav").start();
+
+            bk.setIcon(yellowK);
+            bp.setIcon(yellowN);
+            
+            rk.setIcon(redK);
+            rp.setIcon(redN);
         }
+        
+      //Updated By Greg Schoberth To Resolve B01
         if(e.getActionCommand().equalsIgnoreCase("yellow")){
             new PlaySound("src//sounds//option.wav").start();
+
+            rk.setIcon(yellowK);
+            rp.setIcon(yellowN);
+            
+            bk.setIcon(redK);
+            bp.setIcon(redN);
+        
         }
+
         if(e.getActionCommand().equalsIgnoreCase("New Game")){
             new PlaySound("src//sounds//button.wav").start();
             newGame();
@@ -336,17 +381,21 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow"))
 		{
             this.toMove = redNormal;
+            update(getGraphics()); //Updated to resolve an issue with E03
+            drawCheckers(); //Updated to resolve an issue with E03
             play();
 		}
 		else if (selectedMode==1 && selectedColor.equalsIgnoreCase("red"))
 		{
            this.toMove = redNormal;
-            play();
+           update(getGraphics()); //Updated to resolve an issue with E03
+           drawCheckers(); //Updated to resolve an issue with E03
+           play();
 		}
 
         update(getGraphics());
         drawCheckers();
-        
+        showStatus();
     }
 
     public void drawCheckers(){                   //paint checkers on the board
@@ -385,32 +434,34 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     }
 
     
-    
-    public void play()	{    
-    	
-         undoCount++;
+    //Updated By Greg Schoberth To Resolve E03 
+    // Updated by Kendra Neil to add functionality for E04
+    public void play()	{
+    	popUp = this.getLocationOnScreen();
 
-        if(undoCount>3){
-            if(selectedMode==1 && difficulty!=4)
-                unB.setEnabled(true);
-            else if(selectedMode==2)
-                unB.setEnabled(true);
-        }
-        
-        for(int i=0;i<8;i++){
-            System.arraycopy(preBoard2[i],0,preBoard3[i],0,8);
-            System.arraycopy(preBoard1[i],0,preBoard2[i],0,8);
-            System.arraycopy(board[i],0,preBoard1[i],0,8);
-        }
-        preToMove3=preToMove2;
-        preToMove2=preToMove1;
-        preToMove1=toMove;                                                                                  
-        int tempScore;
+        undoCount++;
+
+       if(undoCount>3){
+           if(selectedMode==1 && difficulty!=4)
+               unB.setEnabled(true);
+           else if(selectedMode==2)
+               unB.setEnabled(true);
+       }
+       
+       for(int i=0;i<8;i++){
+           System.arraycopy(preBoard2[i],0,preBoard3[i],0,8);
+           System.arraycopy(preBoard1[i],0,preBoard2[i],0,8);
+           System.arraycopy(board[i],0,preBoard1[i],0,8);
+       }
+       preToMove3=preToMove2;
+       preToMove2=preToMove1;
+       preToMove1=toMove;                                                                                  
+       int tempScore;
 		int[] result = new int[4];
 		int[] counter = new int[1];
 
 		counter[0]=0;
-        
+       
 		if (this.toMove == yellowNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("yellow"))
 		{
 			this.toMove = redNormal;
@@ -421,13 +472,18 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				loser = redNormal;
 			else
 			{
-                CheckerMove.moveComputer(board, result);
-
-                if (loser == empty){
-                    new PlaySound("src//sounds//comPlay.wav").start();
-                    play();
-                }
-                this.toMove = yellowNormal;
+				//Start Changes
+				computerHighlight(result[0],result[1]); 
+				computerDelay();			
+ 	
+				
+		    	//End Changes
+               CheckerMove.moveComputer(board, result);                
+               if (loser == empty){
+                   new PlaySound("src//sounds//comPlay.wav").start();
+                   play();
+               }
+               this.toMove = yellowNormal;
 			}
 		}
 
@@ -441,22 +497,26 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				loser = yellowNormal;
 			else
 			{
-                CheckerMove.moveComputer(board, result);
-                if (loser == empty){
-                    new PlaySound("src//sounds//comPlay.wav").start();
-                    play();
-                }
+				//Start Changes
+				computerHighlight(result[0],result[1]); 
+				computerDelay();
+				
+               CheckerMove.moveComputer(board, result);
+               if (loser == empty){
+                   new PlaySound("src//sounds//comPlay.wav").start();
+                   play();
+               }
 
 				this.toMove = redNormal;
 			}
 		}
 		else
 		{
-            if (this.toMove == redNormal)
+           if (this.toMove == redNormal)
 				this.toMove = yellowNormal;
 			else
 				this.toMove = redNormal;
-        }
+       }
 		if (CheckerMove.noMovesLeft(board,this.toMove))  //
 		{
 			if (this.toMove == redNormal)
@@ -465,26 +525,26 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				loser = yellowNormal;
 		}
 
-        showStatus();
+       showStatus();
 	}
 
-    private boolean isPossibleSquare(int i, int j) {
+   private boolean isPossibleSquare(int i, int j) {
 		return (i+j)%2 == 1;
-    }
+   }
 
-    public void itemStateChanged(ItemEvent e) {          
-    }
+   public void itemStateChanged(ItemEvent e) {          
+   }
 
-    public void mousePressed(MouseEvent e) {
+   public void mousePressed(MouseEvent e) {
 
-        int x=e.getX();
-        int y=e.getY();
-        int [] square=new int[2];
+       int x=e.getX();
+       int y=e.getY();
+       int [] square=new int[2];
 
-        if(x>=0 && x<=500 && y<=500 && y>=0)
-            square= CheckerMove.getIndex(x,y);
-        
-        if (toMove == Checkers.redNormal &&	(board[square[0]][square[1]] == Checkers.redNormal ||
+       if(x>=0 && x<=500 && y<=500 && y>=0)
+           square= CheckerMove.getIndex(x,y);
+       
+       if (toMove == Checkers.redNormal &&	(board[square[0]][square[1]] == Checkers.redNormal ||
 		board[square[0]][square[1]] == Checkers.redKing)|| toMove == Checkers.yellowNormal &&
 		(board[square[0]][square[1]] == Checkers.yellowNormal || board[square[0]][square[1]] == Checkers.yellowKing))
 		{
@@ -496,13 +556,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				highlight = true;
 				startX = square[0];
 				startY = square[1];
-                update(g);
-                g=getGraphics();
-                g.setColor(new Color(255,100,30));
-                g.fillRect(50*square[0],50*square[1],50,50);                 
-                drawCheckers();
-                new PlaySound("src//sounds//clickChecker.wav").start();
-            }
+               update(g);
+               g=getGraphics();
+               g.setColor(new Color(255,100,30));
+               g.fillRect(50*square[0],50*square[1],50,50);                 
+               drawCheckers();
+               new PlaySound("src//sounds//clickChecker.wav").start();
+           }
 		}
 		else if ( highlight  && (float)(square[0]+square[1]) / 2 != (square[0]+square[1]) / 2)
 		{
@@ -514,46 +574,67 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			case CheckerMove.legalMove:
 				incomplete = false;
 				highlight = false;
-				if(selectedMode==1)
-					computerDelay();
-				else if(selectedMode==2){
-					play();
-					update(g);
-					drawCheckers();
-				}
-                break;
+				
+				update(g);
+				drawCheckers();
+				
+				play();
+				
+				update(g);
+				drawCheckers();
+				
+				computerDelay();
+               break;
 			case CheckerMove.incompleteMove:
 				incomplete = true;
 				highlight = true;
 				// the ending square is now starting square for the next capture
 				startX = square[0];
 				startY = square[1];
-                update(g);
-                g=getGraphics();
-                g.setColor(new Color(255,100,30));
-                g.fillRect(50*square[0],50*square[1],50,50);
-                drawCheckers();
-                break;
+               update(g);
+               g=getGraphics();
+               g.setColor(new Color(255,100,30));
+               g.fillRect(50*square[0],50*square[1],50,50);
+               drawCheckers();
+               break;
 			}
-        }
+       }
 	}
-    
-    public void computerDelay(){
-		update(g);
-        drawCheckers();
-		
-    	try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }    	
-    	
-        play();
-        update(g);
-        drawCheckers();
-	
-    }
-    
+   
+   //Updated By Greg Schoberth To Resolve E01 
+   //Causes the thread to sleep for a set period of time
+   //This method is used to create a delay between player and computer moves
+   //to create the sense of the computer choosing its move before executing it.
+   public void computerDelay(){
+       
+   	try {
+           Thread.sleep(1000);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }  
+   }
+   
+   //This method takes in the selected piece the computer will move
+   //and highlights the tile before executing the move. Similar to the player 
+   //selecting a piece on the board.
+   public void computerHighlight(int x, int y){  	
+	   
+	   
+   	int [] square = new int[2];
+   	//square = CheckerMove.getIndex(x, y);
+   	
+   	square[0] = x;
+   	square[1] = y;
+   	
+   	g=getGraphics();
+   	g.setColor(new Color(255,100,30));
+   	g.fillRect(50*square[0],50*square[1],50,50);
+   	drawCheckers();
+   	new PlaySound("src//sounds//clickChecker.wav").start();
+   	 
+   	
+   }    
+  
     public void mouseReleased(MouseEvent e) {
     }
 

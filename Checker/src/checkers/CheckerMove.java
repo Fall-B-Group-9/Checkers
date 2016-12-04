@@ -131,8 +131,11 @@ public class CheckerMove {
                             for (int j=0;j<8;j++){
                                 if ((board[i][j] == Checkers.redNormal ||
                                         board[i][j] == Checkers.redKing)
-                                        && canCapture(board,i,j))
-                                    return illegalMove;
+                                        && canCapture(board,i,j)) {
+                                	new MustCapture(Checkers.popUp);
+                                	return illegalMove;
+                                }
+                                    
                             }
                         }
                         break;
@@ -142,8 +145,10 @@ public class CheckerMove {
                             for (int j=0;j<8;j++){
                                 if ((board[i][j] == Checkers.yellowNormal ||
                                     board[i][j] == Checkers.yellowKing)
-                                    && canCapture(board,i,j))
-                                    return illegalMove;
+                                    && canCapture(board,i,j)) {
+                                	new MustCapture(Checkers.popUp);
+                                	return illegalMove;
+                                }
                                 }
                         }
                         break;
